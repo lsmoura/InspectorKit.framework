@@ -101,6 +101,14 @@
 	[self toggleCollapsedWithAnimation:YES];
 }
 
+- (void)setCollapsed:(BOOL)collap animated:(BOOL)animated {
+	if (collap == collapsed)
+		// Nothing to do
+		return;
+	
+	[self toggleCollapsedWithAnimation:animated];
+}
+
 - (void) toggleCollapsedWithAnimation:(BOOL)animate {
 	if (SDIsInIB)
 		return;
@@ -142,11 +150,9 @@
 	
 	[view setFrame:newFrame];
 	
-	// forgot what this code was for, or why its commented out.
-	// dont care enough to uncomment it and test
-	
-//	if (animate == NO)
-//		[[self bodyView] setAutoresizesSubviews:YES];
+	// Uncommented this. When this code is not active, after hiding a pane not animated, it stucks in hidden state forever.
+	if (animate == NO)
+		[paneBody setAutoresizesSubviews:YES];
 }
 
 - (InspectorPaneContainer*) container {

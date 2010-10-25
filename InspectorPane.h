@@ -40,4 +40,6 @@
 
 - (IBAction) toggleCollapsed:(id)sender;
 
+- (void)setCollapsed:(BOOL)collap animated:(BOOL)animated;
+
 @end
